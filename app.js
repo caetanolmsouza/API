@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const books = [{ name: "book1", author: "author1" }];
-app.get("/books", (request, response) => {
-  response.json({ message: "onde test" });
-});
+app.use(express.json());
+const booksRouter = require("./books.routes.js");
+app.use("/", booksRouter);
 
+app.use("/books", booksRouter);
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`testing listen at ${port}`);
 });
